@@ -21,7 +21,7 @@ Django Rest Tutorial entendendo o básico e criando uma API simpltes de pontos t
 - http://127.0.0.1:8000/api/pontos-turisticos/1/ => (GET) Mostra um ponto turistico apenas, sendo o numero 1 o id do objeto
 - http://127.0.0.1:8000/api/pontos-turisticos/1/ => (PUT) Atualiza as informações do meu ponto turistico, sendo o numero 1 o id do objeto
 - http://127.0.0.1:8000/api/pontos-turisticos/1/ => (DELETE) Deleta um ponto turistico apenas, sendo o numero 1 o id do objeto
-- Segue o mesmo padrão para os demais endpoints.
+#### Segue o mesmo padrão para os demais endpoints.
 - http://127.0.0.1:8000/api/atracoes/
 - http://127.0.0.1:8000/api/enderecos/
 - http://127.0.0.1:8000/api/comentarios/
