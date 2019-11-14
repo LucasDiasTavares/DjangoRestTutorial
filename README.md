@@ -51,7 +51,7 @@ Este endpoint foi criado para que eu consiga fazer a "Moderação dos pontos tur
   -  `git clone 'https://github.com/Pancitopenico/DjangoRestTutorial'`
 
 - Instalando os requerimentos da API
-  - pip install -r requirements-dev.txt
+  - pip install -r requirements.txt
   
 - Instalando primeiros passos
   - python manage.py makemigrations
