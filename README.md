@@ -1,26 +1,26 @@
 # Django Rest Tutorial
-Django Rest Tutorial entendendo o básico e criando uma API simpltes de pontos turísticos.
-
+##### Projeto em desenvolvimento
+Django Rest Tutorial entendendo o básico e criando uma API simples de pontos turísticos.
 [Django Rest Framework Docs](https://www.django-rest-framework.org/).
 
 ## Pontos abordados na API
 
-- Propor um novo ponto turistico - Qualquer pessoa.
-- Moderação dos pontos turisticos cadastrados - Administradores da API.
-- Listagem básica dos pontos turisticos (Lista resumida) - Via token.
+- Propor um novo ponto turístico - Qualquer pessoa.
+- Moderação dos pontos turísticos cadastrados - Administradores da API.
+- Listagem básica dos pontos turísticos (Lista resumida) - Via token.
 - Listagem completa dos pontos turisticos - Via token.
-- Detalhe de um ponto turistico - Via token.
-- Atualização de um ponto turistico por usuários autorizados - Via token (Permissão especial)
-- Deleção de um ponto turistico por usuários autorizados - Via token (Permissão especial)
+- Detalhe de um ponto turístico - Via token.
+- Atualização de um ponto turístico por usuários autorizados - Via token (Permissão especial)
+- Deleção de um ponto turístico por usuários autorizados - Via token (Permissão especial)
 
 ## Endpoints da API
 #### Estes são os primeiros endpoints da minha API
-- http://127.0.0.1:8000/ => (GET) Contém a lista de todos os endpoints
-- http://127.0.0.1:8000/api/pontos-turisticos/ => (GET) Listagem de todos os pontos turisticos
-- http://127.0.0.1:8000/api/pontos-turisticos/ => (POST) Adiciona um novo ponto turistico
-- http://127.0.0.1:8000/api/pontos-turisticos/1/ => (GET) Mostra um ponto turistico apenas, sendo o numero 1 o id do objeto
-- http://127.0.0.1:8000/api/pontos-turisticos/1/ => (PUT) Atualiza as informações do meu ponto turistico, sendo o numero 1 o id do objeto
-- http://127.0.0.1:8000/api/pontos-turisticos/1/ => (DELETE) Deleta um ponto turistico apenas, sendo o numero 1 o id do objeto
+- http://127.0.0.1:8000/ => (GET) Contém a lista de todos os endpoints.
+- http://127.0.0.1:8000/api/pontos-turisticos/ => (GET) Listagem de todos os pontos turístico.
+- http://127.0.0.1:8000/api/pontos-turisticos/ => (POST) Adiciona um novo ponto turístico.
+- http://127.0.0.1:8000/api/pontos-turisticos/1/ => (GET) Mostra um ponto turístico apenas, sendo o número 1 o id do objeto.
+- http://127.0.0.1:8000/api/pontos-turisticos/1/ => (PUT) Atualiza as informações do meu ponto turistico, sendo o número 1 o id do objeto.
+- http://127.0.0.1:8000/api/pontos-turisticos/1/ => (DELETE) Deleta um ponto turístico apenas, sendo o número 1 o id do objeto.
 #### Segue o mesmo padrão para os demais endpoints.
 - http://127.0.0.1:8000/api/atracoes/
 - http://127.0.0.1:8000/api/enderecos/
@@ -29,19 +29,23 @@ Django Rest Tutorial entendendo o básico e criando uma API simpltes de pontos t
 
 #### Endpoints especiais
 Este endpoint foi criado para que eu consiga fazer a "Moderação dos pontos turisticos cadastrados".
-- http://127.0.0.1:8000/api/pontos-turisticos-aprovados => (GET) Retorna todos os pontos turisticos aprovados
+- http://127.0.0.1:8000/api/pontos-turisticos-aprovados => (GET) Retorna todos os pontos turisticos aprovados.
 
-## Alterações do Administrador
+## Alterações no Painel de Administrador
 - 
 
 ## Requerimentos
-- 
+- Django 2.2.7
+- djangorestframework 3.10.3
+- pkg-resources 0.0.0
+- pytz 2019.3
+- sqlparse 0.3.0
 
 ## Testando a minha API
 #### Instalando a API
 - Crie um novo ambiente virtual (env) e ative o mesmo
   - python3 -m venv nomeDoAmbiente
-  - . nomeDoAmbiente/bin/activate
+  - source nomeDoAmbiente/bin/activate
 
 - Clone o meu projeto do github
   -  `git clone 'https://github.com/Pancitopenico/DjangoRestTutorial'`
@@ -55,4 +59,4 @@ Este endpoint foi criado para que eu consiga fazer a "Moderação dos pontos tur
   - python manage.py createsuperuser
   - python manage.py runserver
   
-- Agora provavelmente tudo irá rodar perfeitamente
+- Agora provavelmente tudo irá rodar perfeitamente.
