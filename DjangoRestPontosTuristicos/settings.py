@@ -116,5 +116,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = 'imagens'
+
+MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'

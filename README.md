@@ -40,6 +40,7 @@ Este endpoint foi criado para que eu consiga fazer a "Moderação dos pontos tur
 - pkg-resources 0.0.0
 - pytz 2019.3
 - sqlparse 0.3.0
+- Pillow 6.2.1
 
 ## Testando a minha API
 #### Instalando a API
