@@ -5,13 +5,13 @@ Django Rest Tutorial entendendo o básico e criando uma API simpltes de pontos t
 
 ## Pontos abordados na API
 
-- Propor um novo produto - Qualquer pessoa.
-- Moderação dos produtos cadastrados - Administradores da API.
-- Listagem básica dos produtos (Lista resumida) - Via token.
-- Listagem completa dos produtos - Via token.
-- Detalhe de um produto - Via token.
-- Atualização de um produto por usuários autorizados - Via token (Permissão especial)
-- Deleção de um produto por usuários autorizados - Via token (Permissão especial)
+- Propor um novo ponto turistico - Qualquer pessoa.
+- Moderação dos pontos turisticos cadastrados - Administradores da API.
+- Listagem básica dos pontos turisticos (Lista resumida) - Via token.
+- Listagem completa dos pontos turisticos - Via token.
+- Detalhe de um ponto turistico - Via token.
+- Atualização de um ponto turistico por usuários autorizados - Via token (Permissão especial)
+- Deleção de um ponto turistico por usuários autorizados - Via token (Permissão especial)
 
 ## Endpoints da API
 #### Estes são os primeiros endpoints da minha API
@@ -26,6 +26,13 @@ Django Rest Tutorial entendendo o básico e criando uma API simpltes de pontos t
 - http://127.0.0.1:8000/api/enderecos/
 - http://127.0.0.1:8000/api/comentarios/
 - http://127.0.0.1:8000/api/avaliacoes/
+
+#### Endpoints especiais
+Este endpoint foi criado para que eu consiga fazer a "Moderação dos pontos turisticos cadastrados".
+- http://127.0.0.1:8000/api/pontos-turisticos-aprovados => (GET) Retorna todos os pontos turisticos aprovados
+
+## Alterações do Administrador
+- 
 
 ## Requerimentos
 - 
