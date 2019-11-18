@@ -33,7 +33,7 @@ Este endpoint foi criado para que eu consiga fazer a "Moderação dos pontos tur
 
 Este endpoint foi criado para que eu consiga fazer uma ordenação nos meus resultados.
 - http://127.0.0.1:8000/api/pontos-turisticos-nome/?nome=Ponto (GET) Retorna todos os pontos turisticos que contenha a palavra Ponto no nome em ordem alfabetica, caso não passe nada na variavel irá retornar todos os pontos turisticos.
-
+- http://127.0.0.1:8000/api/atracoes/?nome=AlgoEscrito&descricao=AlgoEscrito (GET) Instalção do DjangoFilterBackend possibilitando que seja filtrado por nome e/ou descrição, porém ele está como exactly
 
 ## Alterações no Painel de Administrador
 - 
