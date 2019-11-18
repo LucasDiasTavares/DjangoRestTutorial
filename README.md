@@ -31,6 +31,10 @@ Django Rest Tutorial entendendo o básico e criando uma API simples de pontos tu
 Este endpoint foi criado para que eu consiga fazer a "Moderação dos pontos turisticos cadastrados".
 - http://127.0.0.1:8000/api/pontos-turisticos-aprovados => (GET) Retorna todos os pontos turisticos aprovados.
 
+Este endpoint foi criado para que eu consiga fazer uma ordenação nos meus resultados.
+- http://127.0.0.1:8000/api/pontos-turisticos-nome/?nome=Ponto (GET) Retorna todos os pontos turisticos que contenha a palavra Ponto no nome.
+
+
 ## Alterações no Painel de Administrador
 - 
 
