@@ -45,6 +45,7 @@ Este endpoint foi criado para que eu consiga fazer uma ordenação nos meus resu
 - pytz 2019.3
 - sqlparse 0.3.0
 - Pillow 6.2.1
+- django-filter 2.2.0
 
 ## Testando a minha API
 #### Instalando a API
