@@ -32,7 +32,7 @@ Este endpoint foi criado para que eu consiga fazer a "Moderação dos pontos tur
 - http://127.0.0.1:8000/api/pontos-turisticos-aprovados => (GET) Retorna todos os pontos turisticos aprovados.
 
 Este endpoint foi criado para que eu consiga fazer uma ordenação nos meus resultados.
-- http://127.0.0.1:8000/api/pontos-turisticos-nome/?nome=Ponto (GET) Retorna todos os pontos turisticos que contenha a palavra Ponto no nome em ordem alfabetica.
+- http://127.0.0.1:8000/api/pontos-turisticos-nome/?nome=Ponto (GET) Retorna todos os pontos turisticos que contenha a palavra Ponto no nome em ordem alfabetica, caso não passe nada na variavel irá retornar todos os pontos turisticos.
 
 
 ## Alterações no Painel de Administrador
