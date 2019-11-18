@@ -35,6 +35,14 @@ Este endpoint foi criado para que eu consiga fazer uma ordenação nos meus resu
 - http://127.0.0.1:8000/api/pontos-turisticos-nome/?nome=Ponto (GET) Retorna todos os pontos turisticos que contenha a palavra Ponto no nome em ordem alfabetica, caso não passe nada na variavel irá retornar todos os pontos turisticos.
 - http://127.0.0.1:8000/api/atracoes/?nome=AlgoEscrito&descricao=AlgoEscrito (GET) Instalção do DjangoFilterBackend possibilitando que seja filtrado por nome e/ou descrição, porém ele está como exactly
 - http://127.0.0.1:8000/api/atracoes/ (GET) Busca por resultados conforme eu estou procurando, sendo podendo alterar facilmente utilizando os prefixos: '^': 'istartswith', '=': 'iexact', '@': 'search', '$': 'iregex'. Exemplos  dos prefixos no código.
+
+#### Authorization/Login
+- http://127.0.0.1:8000/api-token-auth/?username=MeuUsuario&password=MinhaSenha (POST) E irá me retornar um token similar a esté (utilizei o PostMan):
+  - {"token": "58e46eea0e9b63b29bd62g38e34a9dbf4f978b98"}
+  - Quando eu precisar acessar alguma informação que só pode ser acessada com algum tipo de login posso utilizar o Token no lugar de ficar sempre passando o ID/Senha
+
+Authorization: Token 58e46eea0e9b63b29bd62e38e34a9dbf4f97fb98
+
 ## Alterações no Painel de Administrador
 - 
 

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 from core.api.viewsets import (PontoTuristicoViewSet,
                                PontoTuristicoAprovadoViewSet,
                                PontoTuristicoViewSetNomeAlfabetico)
@@ -18,7 +19,9 @@ router.register(r'api/enderecos', EnderecoViewSet)
 router.register(r'api/comentarios', ComentarioViewSet)
 router.register(r'api/avaliacoes', AvaliacaoViewSet)
 
+
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('api-token-auth/', obtain_auth_token),
 ]
