@@ -27,6 +27,8 @@ class PontoTuristicoViewSetNomeAlfabetico(ModelViewSet):
     exemplo: http://127.0.0.1:8000/api/pontos-turisticos-nome/?nome=Ponto
     irá retornar todos os pontos que contém Ponto
     e irá colocalos em ordem alfabetica
+    Caso não passe nada na variavel de ordenação irá retornar todos
+    os pontos turisticos
     """
     queryset = PontoTuristico.objects.all()
     serializer_class = PontoTuristicoSerializer
@@ -36,4 +38,8 @@ class PontoTuristicoViewSetNomeAlfabetico(ModelViewSet):
 
         if nome:
             queryset = PontoTuristico.objects.filter(nome__icontains=nome).order_by('nome')
+            return queryset
+
+        else:
+            queryset = PontoTuristico.objects.all()
             return queryset
