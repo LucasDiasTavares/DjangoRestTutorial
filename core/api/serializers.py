@@ -6,6 +6,7 @@ from comentarios.api.serializers import ComentarioSerializer
 from avaliacoes.api.serializers import AvaliacaoSerializer
 from enderecos.api.serializers import EnderecoSerializer
 from atracoes.models import Atracao
+from enderecos.models import Endereco
 
 
 class PontoTuristicoSerializer(ModelSerializer):
@@ -25,7 +26,7 @@ class PontoTuristicoSerializerCompleto(ModelSerializer):
     atracoes = AtracaoSerializer(many=True)
     comentarios = ComentarioSerializer(many=True, read_only=True)
     avaliacoes = AvaliacaoSerializer(many=True, read_only=True)
-    enderecos = EnderecoSerializer(read_only=True)
+    enderecos = EnderecoSerializer()
     campo_customizado_no_serializer = SerializerMethodField()
 
     class Meta:
@@ -43,8 +44,17 @@ class PontoTuristicoSerializerCompleto(ModelSerializer):
     def create(self, validated_data):
         atracoes = validated_data['atracoes']
         del validated_data['atracoes']
+
+        enderecos = validated_data['enderecos']
+        del validated_data['enderecos']
+
         ponto = PontoTuristico.objects.create(**validated_data)
         self.cria_atracoes(atracoes, ponto)
+
+        end = Endereco.objects.create(**enderecos)
+        ponto.enderecos = end
+
+        ponto.save()
 
         return ponto
 
