@@ -5,6 +5,13 @@ from avaliacoes.models import Avaliacao
 from enderecos.models import Endereco
 
 
+class CodigoIdentificacao(models.Model):
+    codigo = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.codigo
+
+
 class PontoTuristico(models.Model):
     nome = models.CharField(max_length=150)
     descricao = models.TextField()
@@ -15,6 +22,9 @@ class PontoTuristico(models.Model):
     enderecos = models.ForeignKey(
         Endereco, on_delete=models.CASCADE, null=True, blank=True)
     foto = models.ImageField(upload_to='pontos-turisticos', null=True, blank=True)
+    cod_identificacao = models.OneToOneField(
+        CodigoIdentificacao, on_delete=models.CASCADE, null=True, blank=True
+    )
 
     @property
     def campo_customizado_no_model(self):

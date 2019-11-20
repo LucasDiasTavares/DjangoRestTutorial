@@ -1,12 +1,18 @@
 from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
-from core.models import PontoTuristico
+from core.models import PontoTuristico, CodigoIdentificacao
+from atracoes.models import Atracao
+from enderecos.models import Endereco
 from atracoes.api.serializers import AtracaoSerializer
 from comentarios.api.serializers import ComentarioSerializer
 from avaliacoes.api.serializers import AvaliacaoSerializer
 from enderecos.api.serializers import EnderecoSerializer
-from atracoes.models import Atracao
-from enderecos.models import Endereco
+
+
+class CodigoIdentificacaoSerializer(ModelSerializer):
+    class Meta:
+        model = CodigoIdentificacao
+        fields = ('codigo', )
 
 
 class PontoTuristicoSerializer(ModelSerializer):
@@ -28,12 +34,13 @@ class PontoTuristicoSerializerCompleto(ModelSerializer):
     avaliacoes = AvaliacaoSerializer(many=True, read_only=True)
     enderecos = EnderecoSerializer()
     campo_customizado_no_serializer = SerializerMethodField()
+    cod_identificacao = CodigoIdentificacaoSerializer()
 
     class Meta:
         model = PontoTuristico
         fields = (
             'id', 'campo_customizado_no_serializer', 'campo_customizado_no_model', 'nome', 'descricao',
-            'aprovado', 'foto', 'atracoes', 'comentarios', 'avaliacoes', 'enderecos'
+            'aprovado', 'foto', 'atracoes', 'comentarios', 'avaliacoes', 'enderecos', 'cod_identificacao'
                   )
 
     def cria_atracoes(self, atracoes, ponto):
@@ -47,12 +54,17 @@ class PontoTuristicoSerializerCompleto(ModelSerializer):
 
         enderecos = validated_data['enderecos']
         del validated_data['enderecos']
+        end = Endereco.objects.create(**enderecos)
+
+        codi = validated_data['cod_identificacao']
+        del validated_data['cod_identificacao']
+        codi = CodigoIdentificacao.objects.create(**codi)
 
         ponto = PontoTuristico.objects.create(**validated_data)
         self.cria_atracoes(atracoes, ponto)
 
-        end = Endereco.objects.create(**enderecos)
         ponto.enderecos = end
+        ponto.cod_identificacao = codi
 
         ponto.save()
 
