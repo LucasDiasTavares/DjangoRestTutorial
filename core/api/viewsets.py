@@ -2,7 +2,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from core.models import PontoTuristico
-from .serializers import PontoTuristicoSerializer
+from .serializers import PontoTuristicoSerializer, PontoTuristicoSerializerCompleto
 
 
 class PontoTuristicoViewSet(ModelViewSet):
@@ -60,3 +60,14 @@ class PontoTuristicoViewSetAutenticado(ModelViewSet):
     # IsAuthenticatedOrReadOnly irá liberar as informações apenas para ler ou seja não pode deletar ou criar
     # novas informações utilizando IsAuthenticatedOrReadOnly
     # DjangoModelPermissions posso criar permissões customizadas minha
+
+
+class PontoTuristicoViewSetCompleto(ModelViewSet):
+    """
+    Retorno todas as informações dos pontos turisticos
+    utilize apenas para testes pois é bem pesado esse retorno
+    """
+    queryset = PontoTuristico.objects.all()
+    serializer_class = PontoTuristicoSerializerCompleto
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
