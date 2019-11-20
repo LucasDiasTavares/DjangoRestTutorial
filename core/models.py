@@ -16,5 +16,9 @@ class PontoTuristico(models.Model):
         Endereco, on_delete=models.CASCADE, null=True, blank=True)
     foto = models.ImageField(upload_to='pontos-turisticos', null=True, blank=True)
 
+    @property
+    def campo_customizado_no_model(self):
+        return 'Nome: %s - Endereço: %s' % (self.nome, self.enderecos)
+
     def __str__(self):
         return self.nome

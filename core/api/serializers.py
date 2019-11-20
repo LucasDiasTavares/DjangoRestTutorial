@@ -1,3 +1,4 @@
+from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 from core.models import PontoTuristico
 from atracoes.api.serializers import AtracaoSerializer
@@ -24,10 +25,14 @@ class PontoTuristicoSerializerCompleto(ModelSerializer):
     comentarios = ComentarioSerializer(many=True)
     avaliacoes = AvaliacaoSerializer(many=True)
     enderecos = EnderecoSerializer()
+    campo_customizado_no_serializer = SerializerMethodField()
 
     class Meta:
         model = PontoTuristico
         fields = (
-            'id', 'nome', 'descricao', 'aprovado', 'foto',
+            'id', 'campo_customizado_no_serializer', 'campo_customizado_no_model', 'nome', 'descricao', 'aprovado', 'foto',
             'atracoes', 'comentarios', 'avaliacoes', 'enderecos'
                   )
+
+    def get_campo_customizado_no_serializer(self, obj):
+        return 'Nome: %s - Endereço: %s' % (obj.nome, obj.enderecos)
