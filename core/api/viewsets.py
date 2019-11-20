@@ -69,5 +69,5 @@ class PontoTuristicoViewSetCompleto(ModelViewSet):
     """
     queryset = PontoTuristico.objects.all()
     serializer_class = PontoTuristicoSerializerCompleto
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    # authentication_classes = (TokenAuthentication, )
+    # permission_classes = (IsAuthenticatedOrReadOnly, )

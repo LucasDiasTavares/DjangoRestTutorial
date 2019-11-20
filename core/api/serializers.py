@@ -5,6 +5,7 @@ from atracoes.api.serializers import AtracaoSerializer
 from comentarios.api.serializers import ComentarioSerializer
 from avaliacoes.api.serializers import AvaliacaoSerializer
 from enderecos.api.serializers import EnderecoSerializer
+from atracoes.models import Atracao
 
 
 class PontoTuristicoSerializer(ModelSerializer):
@@ -22,17 +23,30 @@ class PontoTuristicoSerializerCompleto(ModelSerializer):
     nome do field que será serializado
     """
     atracoes = AtracaoSerializer(many=True)
-    comentarios = ComentarioSerializer(many=True)
-    avaliacoes = AvaliacaoSerializer(many=True)
-    enderecos = EnderecoSerializer()
+    comentarios = ComentarioSerializer(many=True, read_only=True)
+    avaliacoes = AvaliacaoSerializer(many=True, read_only=True)
+    enderecos = EnderecoSerializer(read_only=True)
     campo_customizado_no_serializer = SerializerMethodField()
 
     class Meta:
         model = PontoTuristico
         fields = (
-            'id', 'campo_customizado_no_serializer', 'campo_customizado_no_model', 'nome', 'descricao', 'aprovado', 'foto',
-            'atracoes', 'comentarios', 'avaliacoes', 'enderecos'
+            'id', 'campo_customizado_no_serializer', 'campo_customizado_no_model', 'nome', 'descricao',
+            'aprovado', 'foto', 'atracoes', 'comentarios', 'avaliacoes', 'enderecos'
                   )
+
+    def cria_atracoes(self, atracoes, ponto):
+        for atracao in atracoes:
+            atrac = Atracao.objects.create(**atracao)
+            ponto.atracoes.add(atrac)
+
+    def create(self, validated_data):
+        atracoes = validated_data['atracoes']
+        del validated_data['atracoes']
+        ponto = PontoTuristico.objects.create(**validated_data)
+        self.cria_atracoes(atracoes, ponto)
+
+        return ponto
 
     def get_campo_customizado_no_serializer(self, obj):
         return 'Nome: %s - Endereço: %s' % (obj.nome, obj.enderecos)

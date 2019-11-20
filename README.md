@@ -33,20 +33,69 @@ Django Rest Tutorial entendendo o básico e criando uma API simples de pontos tu
 Este endpoint foi criado para que eu consiga fazer a "Moderação dos pontos turisticos cadastrados".
 - http://127.0.0.1:8000/api/pontos-turisticos-aprovados => (GET) Retorna todos os pontos turisticos aprovados.
 
+Este endpoint foi criado com a finalidade ver os Nested Relationships (Relacionamentos Aninhados ou um objeto dentro do outro)
+- http://127.0.0.1:8000/api/pontos-turisticos-completo/ => (GET) Retorna todos os pontos turisticos com todas as informações e todos(as): atracoes, comentarios, avaliacoes e enderecos.
+- http://127.0.0.1:8000/api/pontos-turisticos-completo/1/ => (GET) Retorna todas as informações de um ponto turistico em específico.
+
+
 ##### Este endpoint foi criado para que eu consiga fazer uma ordenação nos meus resultados.
-- http://127.0.0.1:8000/api/pontos-turisticos-nome/?nome=Ponto (GET) Retorna todos os pontos turisticos que contenha a palavra Ponto no nome em ordem alfabetica, caso não passe nada na variavel irá retornar todos os pontos turisticos.
-- http://127.0.0.1:8000/api/atracoes/?nome=AlgoEscrito&descricao=AlgoEscrito (GET) Instalção do DjangoFilterBackend possibilitando que seja filtrado por nome e/ou descrição, porém ele está como exactly
-- http://127.0.0.1:8000/api/atracoes/ (GET) Busca por resultados conforme eu estou procurando, sendo podendo alterar facilmente utilizando os prefixos: '^': 'istartswith', '=': 'iexact', '@': 'search', '$': 'iregex'. Exemplos  dos prefixos no código.
+- http://127.0.0.1:8000/api/pontos-turisticos-nome/?nome=Ponto => (GET) Retorna todos os pontos turisticos que contenha a palavra Ponto no nome em ordem alfabetica, caso não passe nada na variavel irá retornar todos os pontos turisticos.
+- http://127.0.0.1:8000/api/atracoes/?nome=AlgoEscrito&descricao=AlgoEscrito => (GET) Instalção do DjangoFilterBackend possibilitando que seja filtrado por nome e/ou descrição, porém ele está como exactly
+- http://127.0.0.1:8000/api/atracoes/ => (GET) Busca por resultados conforme eu estou procurando, sendo podendo alterar facilmente utilizando os prefixos: '^': 'istartswith', '=': 'iexact', '@': 'search', '$': 'iregex'. Exemplos  dos prefixos no código.
 
 #### Authorization/Login
-- http://127.0.0.1:8000/api-token-auth/?username=MeuUsuario&password=MinhaSenha (POST) E irá me retornar um token similar a esté (utilizei o PostMan):
+- http://127.0.0.1:8000/api-token-auth/?username=MeuUsuario&password=MinhaSenha => (POST) E irá me retornar um token similar a esté (utilizei o PostMan):
   - {"token": "58e46eea0e9b63b29bd62g38e34a9dbf4f978b98"}
   - Quando eu precisar acessar alguma informação que só pode ser acessada com algum tipo de login posso utilizar o Token no lugar de ficar sempre passando o ID/Senha
 
 Authorization: Token 58e46eea0e9b63b29bd62e38e34a9dbf4f97fb98
 
 ##### Este endpoint foi criado para que eu consiga fazer com que certos resultados apenas possa ter acesso se o usuário estiver autenticado via token
-- http://127.0.0.1:8000/api/pontos-turisticos-autenticado/ (GET) Retorna todos os pontos turisticos se o usuário estiver autenticado.
+- http://127.0.0.1:8000/api/pontos-turisticos-autenticado/ => (GET) Retorna todos os pontos turisticos se o usuário estiver autenticado.
+
+## Trabalhando com Nested Relationships
+Imagine que está API, pode ser acessada Offline e quando o usuário conectar com a internet os dados salvos devem sincronizar com o servidor. Utilizando aquele Endpoint para testes posso realizar um post e dentro do meu serializers criar um method de criação personalizado para resolver esse problema de sincronização, deixando alguns campos como readOnly faz com que o campo não seja obrigatório na criação do objeto completo. Exemplo campo de comentários.
+- http://127.0.0.1:8000/api/pontos-turisticos-completo/ => (POST) Irá criar o objeto já com os nested fields.
+
+  - Exemplo de JSON:
+```Json5
+{
+    
+  "nome": "Ponto postManX",
+  "descricao": "Criado pelo postMan2",
+  "aprovado": false,
+  "foto": null,
+  "atracoes": [
+      {
+          "nome": "Atracao 01",
+          "descricao": "Atracão pública",
+          "horario_func": "Segunda - Sexta 08:00 ás 18:00",
+          "idade_minima": 12
+      },
+      {
+          "nome": "Atracao 02",
+          "descricao": "Atracão pública",
+          "horario_func": "Segunda - Sexta 08:00 ás 18:00",
+          "idade_minima": 12
+      },
+      {
+          "nome": "Atracao 03",
+          "descricao": "Atracão pública",
+          "horario_func": "Segunda - Sexta 08:00 ás 18:00",
+          "idade_minima": 12
+      }
+  ],
+  "comentarios": [],
+  "avaliacoes": [],
+  "enderecos": {
+      "linha1": "Rua postMan numero 1354560",
+      "linha2": "Perto do lago postMan",
+      "cidade": "postMan",
+      "estado": "Arco postMan",
+      "pais": "postManLandia"
+  }
+}
+```
 
 ## Alterações no Painel de Administrador
 - 
