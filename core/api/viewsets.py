@@ -1,6 +1,8 @@
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.viewsets import ModelViewSet
 from core.models import PontoTuristico
 from .serializers import PontoTuristicoSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class PontoTuristicoViewSet(ModelViewSet):
@@ -43,3 +45,14 @@ class PontoTuristicoViewSetNomeAlfabetico(ModelViewSet):
         else:
             queryset = PontoTuristico.objects.all()
             return queryset
+
+
+class PontoTuristicoViewSetAutenticado(ModelViewSet):
+    """
+    Retorno todos os pontos turisticos
+    """
+    queryset = PontoTuristico.objects.all()
+    serializer_class = PontoTuristicoSerializer
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
+    # IsAdminUser só irá funcionar se o valor da response for user.is_staff = True
